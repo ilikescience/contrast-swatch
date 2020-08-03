@@ -2,10 +2,8 @@ const Color = require('color')
 const { createElement: h } = require('react')
 const { renderToStaticMarkup } = require('react-dom/server')
 
-const homepage = 'https://github.com/jxnblk/contrast-swatch'
-
 const parseURL = (req) => {
-  const { foreground, background, ...query } = req.query
+  const { foreground, background, ...query } = req.queryStringParameters
 
   if (!foreground || !background) return null
 
@@ -123,16 +121,28 @@ const svg = req => {
   }
 }
 
-module.exports = async (req, res) => {
+module.exports.handler = async (req) => {
   const data = svg(req)
 
   if (!data) return
 
   switch (data.query.type) {
     case 'json':
-      return res.send(data)
-  }
+      return {
+        statusCode: 200,
+        headers: {
+          "Content-Type": "text/json"
+        },
+        body: data
+      };
+    }
 
-  res.setHeader('Content-Type', 'image/svg+xml;charset=utf-8')
-  res.send(data.svg)
+  return {
+    statusCode: 200,
+    headers: {
+      "Content-Type": "image/svg+xml;charset=utf-8",
+      "Cache-Control" : "max-age=604800"
+    },
+    body: data.svg
+  }
 }

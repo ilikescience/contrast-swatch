@@ -1,0 +1,10 @@
+[build]
+
+  # This command builds the site
+  command = ""
+
+  # This is the directory that will be deployed
+  publish = "./"
+
+  # This is where our functions are located
+  functions = "functions"

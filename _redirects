@@ -1,0 +1,2 @@
+/ https://github.com/ilikescience/contrast-swatch
+/:fg/:bg /.netlify/functions/index?foreground=:fg&background=:bg 200!
