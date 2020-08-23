@@ -125,7 +125,10 @@ module.exports.handler = (req) => {
   const data = svg(req)
   console.log(data);
   
-  if (!data) return
+  if (!data) {
+    console.log('hi');
+    return
+  }
 
   switch (data.query.type) {
     case 'json':
