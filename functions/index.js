@@ -112,6 +112,8 @@ const svg = req => {
     )
   )
 
+  console.log(el | 'failed to create element');
+
   const svg = renderToStaticMarkup(el)
 
   return {
@@ -125,10 +127,7 @@ module.exports.handler = (req) => {
   const data = svg(req)
   console.log(data);
   
-  if (!data) {
-    console.log('hi');
-    return
-  }
+  if (!data) return
 
   switch (data.query.type) {
     case 'json':
