@@ -6,4 +6,4 @@
   publish = "./"
 
   # This is where our functions are located
-  functions = "functions"
+  functions = "./functions"

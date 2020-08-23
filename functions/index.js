@@ -123,7 +123,8 @@ const svg = req => {
 
 module.exports.handler = async (req) => {
   const data = svg(req)
-
+  console.log(data);
+  
   if (!data) return
 
   switch (data.query.type) {
