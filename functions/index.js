@@ -121,7 +121,7 @@ const svg = req => {
   }
 }
 
-module.exports.handler = async (req) => {
+module.exports.handler = (req) => {
   const data = svg(req)
   console.log(data);
   
